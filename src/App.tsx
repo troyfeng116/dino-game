@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Canvas from './Components/Canvas'
+import Stage from './Components/Stage'
 
 function App() {
   return (
-    <Canvas width={500} height={500} />
+    <Stage />
   );
 }
 
