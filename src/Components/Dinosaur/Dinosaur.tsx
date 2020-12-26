@@ -11,6 +11,11 @@ enum JumpState {
 
 export const Dinosaur: React.FC = () => {
     const [jumpState, setJumpState] = useState<JumpState>(JumpState.GROUND)
+    const [sprite, setSprite] = useState<boolean>(true)
+
+    useEffect(() => {
+        setTimeout(() => setSprite(!sprite), 150)
+    }, [sprite])
 
     useEffect(() => {
         const handleKeyDown = (e: { key: string }) => {
@@ -53,7 +58,7 @@ export const Dinosaur: React.FC = () => {
 
     return (
         <div className={`transition duration-${JUMP_DURATION} transform ${className} border border-black h-12 w-12 mt-auto`}>
-            <img src="/dinosaur.png" className="fill" />
+            <img src={`/dinosaur-${sprite ? '1' : '2'}.png`} className="fill" />
         </div>
     )
 }
