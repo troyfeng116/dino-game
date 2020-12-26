@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-const JUMP_HEIGHT = 32
-const JUMP_DURATION = 1000
+const JUMP_HEIGHT = 24
+const JUMP_DURATION = 300
 
 enum JumpState {
-    INITIAL = 'INITIAL',
-    START = 'START',
+    GROUND = 'GROUND',
     UP = 'UP',
     DOWN = 'DOWN',
-    LANDED = 'LANDED'
 }
 
 export const Dinosaur: React.FC = () => {
-    const [jumpState, setJumpState] = useState<JumpState>(JumpState.INITIAL)
+    const [jumpState, setJumpState] = useState<JumpState>(JumpState.GROUND)
 
     useEffect(() => {
         const handleKeyDown = (e: { key: string }) => {
@@ -20,40 +18,32 @@ export const Dinosaur: React.FC = () => {
         }
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [])
+    }, [jumpState])
 
     useEffect(() => {
-        console.log(jumpState)
         switch (jumpState) {
-            case JumpState.INITIAL:
+            case JumpState.GROUND:
                 break
-            case JumpState.START:
+            case JumpState.UP:
                 setTimeout(() => setJumpState(JumpState.DOWN), JUMP_DURATION)
                 break
             case JumpState.DOWN:
-                setTimeout(() => setJumpState(JumpState.LANDED), JUMP_DURATION)
-                break
-            case JumpState.LANDED:
-                setTimeout(() => setJumpState(JumpState.INITIAL), JUMP_DURATION)
+                setTimeout(() => setJumpState(JumpState.GROUND), JUMP_DURATION)
                 break
         }
     }, [jumpState])
 
     const jump = () => {
-        if (jumpState !== JumpState.INITIAL) return
-        console.log("STATE: " + jumpState + " JUMP!!!")
-        setJumpState(JumpState.START)
+        if (jumpState !== JumpState.GROUND) return
+        setJumpState(JumpState.UP)
     }
 
     let className = ''
     switch (jumpState) {
-        case JumpState.INITIAL:
+        case JumpState.GROUND:
             className = 'translate-y-0'
             break
-        case JumpState.LANDED:
-            className = 'translate-y-0'
-            break
-        case JumpState.START:
+        case JumpState.UP:
             className = `ease-out -translate-y-${JUMP_HEIGHT}`
             break
         case JumpState.DOWN:
