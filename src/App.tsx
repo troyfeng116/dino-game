@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Stage from './Components/Stage'
 
-function App() {
+function App(): JSX.Element {
   return (
     <Stage />
   );
