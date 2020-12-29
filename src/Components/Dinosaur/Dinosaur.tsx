@@ -57,7 +57,7 @@ export const Dinosaur: React.FC = () => {
     }
 
     return (
-        <div className={`transition duration-${JUMP_DURATION} transform ${className} border border-black h-12 w-12 mt-auto`}>
+        <div className={`absolute bottom-4 z-10 transition duration-${JUMP_DURATION} transform ${className} border border-black h-12 w-12 mt-auto`}>
             <img src={`/dinosaur-${sprite ? '1' : '2'}.png`} className="fill" />
         </div>
     )
