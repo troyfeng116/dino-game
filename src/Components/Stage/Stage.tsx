@@ -15,7 +15,7 @@ export const Stage: React.FC = () => {
     }, [obstacles])
 
     return (
-        <div className="relative flex h-60 w-96 mx-auto my-auto border border-black overflow-none">
+        <div className="relative flex h-60 stage-width mx-auto my-auto overflow-none">
             {obstacles}
             <Dinosaur />
             <Ground />
