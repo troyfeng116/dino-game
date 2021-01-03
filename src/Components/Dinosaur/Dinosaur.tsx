@@ -65,7 +65,7 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     const imageExtension = gameState === GameState.InProgress ? (sprite ? '-1' : '-2') : ''
 
     return (
-        <div className={`absolute bottom-4 z-10 transition duration-${JUMP_DURATION} transform ${className} border border-black h-12 w-12 mt-auto`}>
+        <div className={`absolute bottom-2 left-4 z-10 transition duration-${JUMP_DURATION} transform ${className} h-12 w-12`}>
             <img src={`/dinosaur${imageExtension}.png`} className="fill" />
         </div>
     )

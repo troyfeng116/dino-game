@@ -14,7 +14,7 @@ export const Obstacle: React.FC = () => {
 
     if (!lifetime) return null
     return (
-        <div className={`absolute bottom-3.5 z-10 obstacle-transition ease-linear obstacle-duration-1 ${className} h-12 w-12 mt-auto`}>
+        <div className={`absolute bottom-2 z-10 obstacle-transition ease-linear obstacle-duration-1 ${className} h-12 w-12 mt-auto`}>
             <RiCactusFill className="text-gray-600 w-12 h-12" />
         </div>
     )
