@@ -19,12 +19,11 @@ export const Stage: React.FC = () => {
 
     useEffect(() => {
         if (gameState === GameState.Dead) {
-            setHighScore(Math.max(highScore, score + 1))
+            setHighScore(Math.max(highScore, score))
             setObstacles([])
         }
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            console.log(e.key)
             if (e.key === ' ' || e.key === 'ArrowUp') {
                 if (gameState !== GameState.InProgress) {
                     setScore(0)
@@ -38,17 +37,19 @@ export const Stage: React.FC = () => {
 
     useEffect(() => {
         if (gameState === GameState.InProgress) {
-            setTimeout(() => setScore(score + 1), 100)
+            const timeout = setTimeout(() => setScore(score + 1), 100)
+            return () => clearTimeout(timeout)
         }
     }, [score, gameState])
 
     useEffect(() => {
         if (gameState === GameState.InProgress) {
-            setTimeout(() => {
+            const timeout = setTimeout(() => {
                 const newObstacles = [...obstacles]
-                newObstacles.push(<Obstacle key={newObstacles.length} />)
+                newObstacles.push(<Obstacle key={newObstacles.length} gameState={gameState} />)
                 setObstacles(newObstacles)
             }, Math.random() * 5000 + 5000)
+            return () => clearTimeout(timeout)
         }
     }, [obstacles, gameState])
 

@@ -20,7 +20,8 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     const [sprite, setSprite] = useState<boolean>(true)
 
     useEffect(() => {
-        setTimeout(() => setSprite(!sprite), 150)
+        const timeout = setTimeout(() => setSprite(!sprite), 150)
+        return () => clearTimeout(timeout)
     }, [sprite])
 
     useEffect(() => {
