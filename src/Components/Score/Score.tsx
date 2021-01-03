@@ -1,13 +1,13 @@
 import React from 'react'
 
-interface ScoreProps {
-    score: number
-}
-
 const padInt = (x: number, length: number): string => {
     let leadingZeroes = ''
     for (let i = 0; i < length; i++) leadingZeroes += '0'
     return `${leadingZeroes}${x}`.slice(-length)
+}
+
+interface ScoreProps {
+    score: number
 }
 
 export const Score: React.FC<ScoreProps> = (props: ScoreProps) => {

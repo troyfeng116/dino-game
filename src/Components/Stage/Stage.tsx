@@ -32,19 +32,22 @@ export const Stage: React.FC = () => {
     }, [score, gameState])
 
     useEffect(() => {
-        setTimeout(() => {
-            const newObstacles = [...obstacles]
-            newObstacles.push(<Obstacle key={newObstacles.length} />)
-            setObstacles(newObstacles)
-        }, Math.random() * 5000 + 5000)
-    }, [obstacles])
+        if (gameState === GameState.InProgress) {
+            setTimeout(() => {
+                const newObstacles = [...obstacles]
+                newObstacles.push(<Obstacle key={newObstacles.length} />)
+                setObstacles(newObstacles)
+            }, Math.random() * 5000 + 5000)
+        }
+    }, [obstacles, gameState])
 
     return (
         <div className="relative flex h-60 stage-width mx-auto my-4 overflow-hidden">
+            <button className="text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>Dead</button>
             <Score score={score} />
             {obstacles}
-            <Dinosaur />
-            <Ground />
+            <Dinosaur gameState={gameState} />
+            <Ground gameState={gameState} />
         </div>
     )
 }
