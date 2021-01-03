@@ -25,7 +25,7 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
 
     useEffect(() => {
         const handleKeyDown = (e: { key: string }) => {
-            if (e.key === ' ') jump()
+            if (e.key === ' ' || e.key === 'ArrowUp') jump()
         }
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
