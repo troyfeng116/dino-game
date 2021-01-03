@@ -15,17 +15,20 @@ export const Stage: React.FC = () => {
     const [obstacles, setObstacles] = useState<React.ReactElement[]>([])
     const [gameState, setGameState] = useState<GameState>(GameState.NotStarted)
     const [score, setScore] = useState<number>(0)
+    const [highScore, setHighScore] = useState<number>(0)
 
     useEffect(() => {
+        if (gameState === GameState.Dead) {
+            setHighScore(Math.max(highScore, score + 1))
+            setObstacles([])
+        }
+
         const handleKeyDown = (e: KeyboardEvent) => {
             console.log(e.key)
             if (e.key === ' ' || e.key === 'ArrowUp') {
                 if (gameState !== GameState.InProgress) {
+                    setScore(0)
                     setGameState(GameState.InProgress)
-                    if (gameState === GameState.Dead) {
-                        setScore(0)
-                        setObstacles([])
-                    }
                 }
             }
         }
@@ -57,7 +60,7 @@ export const Stage: React.FC = () => {
         <div className="relative flex h-60 stage-width mx-auto my-4 overflow-hidden">
             <Message gameState={gameState} messageText={messageText} />
             <div className="cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>Dead</div>
-            <Score score={score} />
+            <Score score={score} highScore={highScore} />
             {obstacles}
             <Dinosaur gameState={gameState} />
             <Ground gameState={gameState} />
