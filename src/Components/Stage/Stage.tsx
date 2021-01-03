@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Dinosaur from '../Dinosaur'
 import Ground from '../Ground'
+import Message from '../Message'
 import Obstacle from '../Obstacle'
 import Score from '../Score'
 
@@ -18,7 +19,7 @@ export const Stage: React.FC = () => {
     useEffect(() => {
         const handleKeyDown = (e: { key: string }) => {
             if (e.key === ' ' || e.key === 'KeyUp') {
-                setGameState(GameState.InProgress)
+                if (gameState !== GameState.InProgress) setGameState(GameState.InProgress)
             }
         }
         window.addEventListener('keydown', handleKeyDown)
@@ -41,8 +42,13 @@ export const Stage: React.FC = () => {
         }
     }, [obstacles, gameState])
 
+    let messageText = ''
+    if (gameState === GameState.NotStarted) messageText = 'Hit space or ↑ to start'
+    else if (gameState === GameState.Dead) messageText = 'Game Over'
+
     return (
         <div className="relative flex h-60 stage-width mx-auto my-4 overflow-hidden">
+            <Message gameState={gameState} messageText={messageText} />
             <button className="text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>Dead</button>
             <Score score={score} />
             {obstacles}
