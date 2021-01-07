@@ -1,5 +1,6 @@
 import React from 'react'
-import { GameState } from '../Stage/Stage'
+
+import { GameState } from '../Stage'
 
 interface GroundProps {
     gameState: GameState

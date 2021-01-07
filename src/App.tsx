@@ -1,11 +1,9 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+
 import Stage from './Components/Stage'
 
 function App(): JSX.Element {
-  return (
-    <Stage />
-  );
+    return <Stage />
 }
 
-export default App;
+export default App

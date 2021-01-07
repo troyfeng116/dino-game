@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import Dinosaur from '../Dinosaur'
 import Ground from '../Ground'
 import Message from '../Message'
@@ -60,7 +61,9 @@ export const Stage: React.FC = () => {
     return (
         <div className="relative flex h-60 stage-width mx-auto my-4 overflow-hidden">
             <Message gameState={gameState} messageText={messageText} />
-            <div className="cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>Dead</div>
+            <div className="cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>
+                Dead
+            </div>
             <Score score={score} highScore={highScore} />
             {obstacles}
             <Dinosaur gameState={gameState} />

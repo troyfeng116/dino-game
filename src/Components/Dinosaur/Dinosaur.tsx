@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import { GameState } from '../Stage/Stage'
 
 const JUMP_HEIGHT = 24
