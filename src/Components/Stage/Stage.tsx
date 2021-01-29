@@ -53,8 +53,7 @@ export const Stage: React.FC = () => {
     useEffect(() => {
         if (gameState === GameState.InProgress) {
             const timeout = setTimeout(() => {
-                const newObstacles = [...obstacles]
-                newObstacles.push(<Obstacle key={newObstacles.length} gameState={gameState} />)
+                const newObstacles = [...obstacles, <Obstacle key={obstacles.length + 1} gameState={gameState} />]
                 setObstacles(newObstacles)
             }, Math.random() * 5000 + 5000)
             return () => clearTimeout(timeout)

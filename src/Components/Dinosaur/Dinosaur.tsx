@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { GameState } from '../Stage/Stage'
 
@@ -16,10 +16,24 @@ interface DinosaurProps {
     dinoRef: React.MutableRefObject<HTMLDivElement | null>
 }
 
+const getHeight = (time: number): number => {
+    return 12 + 0.6 * time - 0.0012 * time * time
+}
+
 export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     const { gameState, dinoRef } = props
-    const [jumpState, setJumpState] = useState<JumpState>(JumpState.GROUND)
     const [sprite, setSprite] = useState<boolean>(true)
+    const [jumpTime, setJumpTime] = useState<number>(-1)
+
+    useEffect(() => {
+        if (jumpTime >= 500) {
+            setJumpTime(-1)
+            return
+        }
+        if (jumpTime < 0) return
+        const timeout = setTimeout(() => setJumpTime(jumpTime + 25), 25)
+        return () => clearTimeout(timeout)
+    }, [jumpTime])
 
     useEffect(() => {
         const timeout = setTimeout(() => setSprite(!sprite), 150)
@@ -32,43 +46,17 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
         }
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [jumpState])
+    }, [jumpTime])
 
-    useEffect(() => {
-        switch (jumpState) {
-            case JumpState.GROUND:
-                break
-            case JumpState.UP:
-                setTimeout(() => setJumpState(JumpState.DOWN), JUMP_DURATION)
-                break
-            case JumpState.DOWN:
-                setTimeout(() => setJumpState(JumpState.GROUND), JUMP_DURATION)
-                break
-        }
-    }, [jumpState])
-
-    const jump = () => {
-        if (jumpState !== JumpState.GROUND) return
-        setJumpState(JumpState.UP)
-    }
-
-    let className = ''
-    switch (jumpState) {
-        case JumpState.GROUND:
-            className = 'translate-y-0'
-            break
-        case JumpState.UP:
-            className = `ease-out -translate-y-${JUMP_HEIGHT}`
-            break
-        case JumpState.DOWN:
-            className = 'ease-in translate-y-0'
-            break
-    }
+    const jump = useCallback(() => {
+        if (jumpTime > 0) return
+        setJumpTime(0)
+    }, [jumpTime])
 
     const imageExtension = gameState === GameState.InProgress ? (sprite ? '-1' : '-2') : ''
 
     return (
-        <div ref={dinoRef} className={`absolute bottom-2 left-4 z-10 transition duration-${JUMP_DURATION} transform ${className} h-12 w-12`}>
+        <div ref={dinoRef} className={`absolute left-4 z-10 transition duration-${JUMP_DURATION} transform h-12 w-12`} style={{ bottom: jumpTime < 0 ? 12 : getHeight(jumpTime) }}>
             <img src={`/dinosaur${imageExtension}.png`} className="fill" />
         </div>
     )
