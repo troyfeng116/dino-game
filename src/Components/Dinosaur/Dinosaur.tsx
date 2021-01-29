@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
+import { heightFunction } from '../../Utils/dinoHeightFunction'
 import { GameState } from '../Stage/Stage'
 
 interface DinosaurProps {
     gameState: GameState
     dinoRef: React.MutableRefObject<HTMLDivElement | null>
-}
-
-const getHeight = (time: number): number => {
-    return 12 + 0.7 * time - 0.0014 * time * time
 }
 
 export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
@@ -47,7 +44,7 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     const imageExtension = gameState === GameState.InProgress ? (sprite ? '-1' : '-2') : ''
 
     return (
-        <div ref={dinoRef} className="absolute left-4 z-10 transform h-12 w-12" style={{ bottom: jumpTime < 0 ? 12 : getHeight(jumpTime) }}>
+        <div ref={dinoRef} className="absolute left-4 z-10 transform h-12 w-12" style={{ bottom: jumpTime < 0 ? 12 : heightFunction(jumpTime) }}>
             <img src={`/dinosaur${imageExtension}.png`} className="fill" />
         </div>
     )
