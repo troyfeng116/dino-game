@@ -13,9 +13,6 @@
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
-    .stage-width {
-        width: 680px;
-    }
     .obstacle-transition {
         transition-property: transform;
     }
@@ -26,6 +23,6 @@
         transform: translateX(-48px);
     }
     .obstacle-duration-1 {
-        transition-duration: 5.5s;
+        transition-duration: 2.2s;
     }
 }

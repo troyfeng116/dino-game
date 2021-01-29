@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { RiCactusFill } from 'react-icons/ri'
 
+import { OBSTACLE_SPEED } from '../../Constants'
 import { GameState } from '../Stage/Stage'
 
 interface ObstacleProps {
@@ -15,7 +16,7 @@ export const Obstacle: React.FC<ObstacleProps> = (props: ObstacleProps) => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setClassName('obstacle-transform-end')
-            setTimeout(() => setLifetime(false), 5500)
+            setTimeout(() => setLifetime(false), OBSTACLE_SPEED)
         }, 100)
         return () => clearTimeout(timeout)
     }, [])

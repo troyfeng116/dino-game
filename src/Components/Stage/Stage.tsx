@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import { STAGE_WIDTH } from '../../Constants'
 import { usePosition } from '../../Utils/usePosition'
 import Dinosaur from '../Dinosaur'
 import Ground from '../Ground'
@@ -22,7 +23,7 @@ export const Stage: React.FC = () => {
     const dinoRect = usePosition(dinoRef)
 
     useEffect(() => {
-        console.log(dinoRect)
+        //console.log(dinoRect)
     }, [dinoRect])
 
     useEffect(() => {
@@ -51,6 +52,7 @@ export const Stage: React.FC = () => {
     }, [score, gameState])
 
     useEffect(() => {
+        //console.log(obstacles)
         if (gameState === GameState.InProgress) {
             const timeout = setTimeout(() => {
                 const newObstacles = [...obstacles, <Obstacle key={obstacles.length + 1} gameState={gameState} />]
@@ -65,7 +67,7 @@ export const Stage: React.FC = () => {
     else if (gameState === GameState.Dead) messageText = 'Game Over'
 
     return (
-        <div className="relative flex h-60 stage-width mx-auto my-4 overflow-hidden">
+        <div className="relative flex h-60 mx-auto my-4 overflow-hidden" style={{ width: STAGE_WIDTH }}>
             <Message gameState={gameState} messageText={messageText} />
             <div className="cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>
                 Dead
