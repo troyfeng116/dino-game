@@ -13,10 +13,11 @@ enum JumpState {
 
 interface DinosaurProps {
     gameState: GameState
+    dinoRef: React.MutableRefObject<HTMLDivElement | null>
 }
 
 export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
-    const { gameState } = props
+    const { gameState, dinoRef } = props
     const [jumpState, setJumpState] = useState<JumpState>(JumpState.GROUND)
     const [sprite, setSprite] = useState<boolean>(true)
 
@@ -67,7 +68,7 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     const imageExtension = gameState === GameState.InProgress ? (sprite ? '-1' : '-2') : ''
 
     return (
-        <div className={`absolute bottom-2 left-4 z-10 transition duration-${JUMP_DURATION} transform ${className} h-12 w-12`}>
+        <div ref={dinoRef} className={`absolute bottom-2 left-4 z-10 transition duration-${JUMP_DURATION} transform ${className} h-12 w-12`}>
             <img src={`/dinosaur${imageExtension}.png`} className="fill" />
         </div>
     )

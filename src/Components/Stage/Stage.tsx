@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
+import { usePosition } from '../../Utils/usePosition'
 import Dinosaur from '../Dinosaur'
 import Ground from '../Ground'
 import Message from '../Message'
@@ -17,6 +18,12 @@ export const Stage: React.FC = () => {
     const [gameState, setGameState] = useState<GameState>(GameState.NotStarted)
     const [score, setScore] = useState<number>(0)
     const [highScore, setHighScore] = useState<number>(0)
+    const dinoRef = useRef<HTMLDivElement>(null)
+    const dinoRect = usePosition(dinoRef)
+
+    useEffect(() => {
+        console.log(dinoRect)
+    }, [dinoRect])
 
     useEffect(() => {
         if (gameState === GameState.Dead) {
@@ -66,7 +73,7 @@ export const Stage: React.FC = () => {
             </div>
             <Score score={score} highScore={highScore} />
             {obstacles}
-            <Dinosaur gameState={gameState} />
+            <Dinosaur dinoRef={dinoRef} gameState={gameState} />
             <Ground gameState={gameState} />
         </div>
     )
