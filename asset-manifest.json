@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/troyfeng116/dino-game/static/css/main.9f747667.chunk.css",
+    "main.js": "/troyfeng116/dino-game/static/js/main.9247f96b.chunk.js",
+    "main.js.map": "/troyfeng116/dino-game/static/js/main.9247f96b.chunk.js.map",
+    "runtime-main.js": "/troyfeng116/dino-game/static/js/runtime-main.9fc0adf3.js",
+    "runtime-main.js.map": "/troyfeng116/dino-game/static/js/runtime-main.9fc0adf3.js.map",
+    "static/js/2.dd3dee33.chunk.js": "/troyfeng116/dino-game/static/js/2.dd3dee33.chunk.js",
+    "static/js/2.dd3dee33.chunk.js.map": "/troyfeng116/dino-game/static/js/2.dd3dee33.chunk.js.map",
+    "static/js/3.8d39d0d1.chunk.js": "/troyfeng116/dino-game/static/js/3.8d39d0d1.chunk.js",
+    "static/js/3.8d39d0d1.chunk.js.map": "/troyfeng116/dino-game/static/js/3.8d39d0d1.chunk.js.map",
+    "index.html": "/troyfeng116/dino-game/index.html",
+    "static/css/main.9f747667.chunk.css.map": "/troyfeng116/dino-game/static/css/main.9f747667.chunk.css.map",
+    "static/js/2.dd3dee33.chunk.js.LICENSE.txt": "/troyfeng116/dino-game/static/js/2.dd3dee33.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9fc0adf3.js",
+    "static/js/2.dd3dee33.chunk.js",
+    "static/css/main.9f747667.chunk.css",
+    "static/js/main.9247f96b.chunk.js"
+  ]
+}
