@@ -5,10 +5,11 @@ import { GameState } from '../Stage/Stage'
 
 interface ObstacleProps {
     gameState: GameState
+    obstacleRef: React.RefObject<HTMLDivElement>
 }
 
 export const Obstacle: React.FC<ObstacleProps> = (props: ObstacleProps) => {
-    const { gameState } = props
+    const { gameState, obstacleRef } = props
     const [lifetime, setLifetime] = useState<boolean>(true)
     const [dx, setDx] = useState<number>(700)
 
@@ -28,7 +29,7 @@ export const Obstacle: React.FC<ObstacleProps> = (props: ObstacleProps) => {
     return useMemo(() => {
         if (!lifetime || gameState !== GameState.InProgress) return null
         return (
-            <div className={`${gameState !== GameState.InProgress ? 'hidden' : ''} absolute bottom-2 z-10 h-12 w-12 mt-auto`} style={{ left: dx, transition: '30ms left linear' }}>
+            <div ref={obstacleRef} className={`${gameState !== GameState.InProgress ? 'hidden' : ''} absolute bottom-2 z-10 h-12 w-12 mt-auto`} style={{ left: dx, transition: '30ms left linear' }}>
                 <RiCactusFill className="text-gray-600 w-12 h-12" />
             </div>
         )
