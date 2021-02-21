@@ -22,7 +22,7 @@ export const Message: React.FC<MessageProps> = (props: MessageProps) => {
     }
 
     return (
-        <div className="z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 uppercase flex-col items-center">
+        <div className="z-40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 uppercase flex flex-col items-center">
             <h2 className="text-center text-2xl">{messageText}</h2>
             <p className="text-center text-sm">{messageSubtext}</p>
         </div>
