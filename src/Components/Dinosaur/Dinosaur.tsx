@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { heightFunction } from '../../Utils/dinoHeightFunction'
 import { GameState } from '../Stage/Stage'
@@ -24,9 +24,10 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     }, [jumpTime])
 
     useEffect(() => {
+        if (jumpTime > 0) return
         const timeout = setTimeout(() => setSprite(!sprite), 150)
         return () => clearTimeout(timeout)
-    }, [sprite])
+    }, [sprite, jumpTime])
 
     useEffect(() => {
         const handleKeyDown = (e: { key: string }) => {
@@ -43,9 +44,12 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
 
     const imageExtension = gameState === GameState.InProgress ? (sprite ? '-1' : '-2') : ''
 
-    return (
-        <div ref={dinoRef} className="absolute left-4 z-10 transform h-12 w-12" style={{ bottom: jumpTime < 0 ? 12 : heightFunction(jumpTime) }}>
-            <img src={`/dinosaur${imageExtension}.png`} className="fill" />
-        </div>
+    return useMemo(
+        () => (
+            <div ref={dinoRef} className="absolute left-4 z-10 transform h-12 w-12" style={{ bottom: jumpTime < 0 ? 12 : heightFunction(jumpTime), transition: '25ms bottom linear' }}>
+                <img src={`/dinosaur${imageExtension}.png`} className="fill" />
+            </div>
+        ),
+        [sprite, jumpTime, gameState],
     )
 }

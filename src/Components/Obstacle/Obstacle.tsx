@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { RiCactusFill } from 'react-icons/ri'
 
 import { OBSTACLE_SPEED } from '../../Constants'
@@ -11,20 +11,27 @@ interface ObstacleProps {
 export const Obstacle: React.FC<ObstacleProps> = (props: ObstacleProps) => {
     const { gameState } = props
     const [lifetime, setLifetime] = useState<boolean>(true)
-    const [className, setClassName] = useState<string>('obstacle-transform-start')
+    const [dx, setDx] = useState<number>(700)
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            setClassName('obstacle-transform-end')
-            setTimeout(() => setLifetime(false), OBSTACLE_SPEED)
-        }, 100)
+        const timeout = setTimeout(() => setLifetime(false), 30 * (75 + 10))
         return () => clearTimeout(timeout)
     }, [])
 
-    if (!lifetime || gameState !== GameState.InProgress) return null
-    return (
-        <div className={`${gameState !== GameState.InProgress ? 'hidden' : ''} absolute bottom-2 z-10 obstacle-transition ease-linear obstacle-duration-1 ${className} h-12 w-12 mt-auto`}>
-            <RiCactusFill className="text-gray-600 w-12 h-12" />
-        </div>
-    )
+    useEffect(() => {
+        if (!lifetime || !gameState) return
+        const timeout = setTimeout(() => {
+            setDx(dx - 10)
+        }, 30)
+        return () => clearTimeout(timeout)
+    }, [dx, lifetime, gameState])
+
+    return useMemo(() => {
+        if (!lifetime || gameState !== GameState.InProgress) return null
+        return (
+            <div className={`${gameState !== GameState.InProgress ? 'hidden' : ''} absolute bottom-2 z-10 h-12 w-12 mt-auto`} style={{ left: dx, transition: '30ms left linear' }}>
+                <RiCactusFill className="text-gray-600 w-12 h-12" />
+            </div>
+        )
+    }, [lifetime, dx, gameState])
 }

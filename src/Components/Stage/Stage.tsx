@@ -69,7 +69,7 @@ export const Stage: React.FC = () => {
     return (
         <div className="relative flex h-60 mx-auto my-4 overflow-hidden" style={{ width: STAGE_WIDTH }}>
             <Message gameState={gameState} messageText={messageText} />
-            <div className="cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>
+            <div className="absolute cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>
                 Dead
             </div>
             <Score score={score} highScore={highScore} />
