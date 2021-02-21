@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/dino-game/static/css/main.9f747667.chunk.css",
-    "main.js": "/dino-game/static/js/main.9247f96b.chunk.js",
-    "main.js.map": "/dino-game/static/js/main.9247f96b.chunk.js.map",
+    "main.js": "/dino-game/static/js/main.a30158d5.chunk.js",
+    "main.js.map": "/dino-game/static/js/main.a30158d5.chunk.js.map",
     "runtime-main.js": "/dino-game/static/js/runtime-main.384ca9c5.js",
     "runtime-main.js.map": "/dino-game/static/js/runtime-main.384ca9c5.js.map",
     "static/js/2.dd3dee33.chunk.js": "/dino-game/static/js/2.dd3dee33.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.384ca9c5.js",
     "static/js/2.dd3dee33.chunk.js",
     "static/css/main.9f747667.chunk.css",
-    "static/js/main.9247f96b.chunk.js"
+    "static/js/main.a30158d5.chunk.js"
   ]
 }
