@@ -13,9 +13,7 @@ export const usePosition = (ref: React.MutableRefObject<HTMLElement | null>): Cl
     )
 
     useEffect(() => {
-        //console.log('useEffect fired')
         if (ref.current !== null) {
-            //console.log(ref.current.getBoundingClientRect())
             setRect({ x: ref.current.offsetLeft, y: ref.current.offsetTop, width: ref.current.offsetWidth, height: ref.current.offsetHeight })
         }
     }, [ref.current?.offsetTop, ref.current?.offsetLeft])

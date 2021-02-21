@@ -13,16 +13,4 @@
     code {
         font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
     }
-    .obstacle-transition {
-        transition-property: transform;
-    }
-    .obstacle-transform-start {
-        transform: translateX(700px);
-    }
-    .obstacle-transform-end {
-        transform: translateX(-48px);
-    }
-    .obstacle-duration-1 {
-        transition-duration: 2.2s;
-    }
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { RiCactusFill } from 'react-icons/ri'
 
-import { OBSTACLE_SPEED } from '../../Constants'
 import { GameState } from '../Stage/Stage'
 
 interface ObstacleProps {
