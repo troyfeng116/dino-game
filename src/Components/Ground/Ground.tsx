@@ -30,8 +30,8 @@ export const Ground: React.FC<GroundProps> = (props: GroundProps) => {
         () => (
             <div className="relative w-full h-10 mt-auto overflow-hidden whitespace-nowrap">
                 <div className={'absolute bottom-0 left-0 flex'} style={{ left: -dx, transition: `${30 - gameLevel * 3} left linear` }}>
-                    <img className="h-10 object-cover m-0" src="/ground.png" width={680} />
-                    <img className="h-10 object-cover m-0" src="/ground.png" width={680} />
+                    <img className="h-10 object-cover m-0" src="./ground.png" width={680} />
+                    <img className="h-10 object-cover m-0" src="./ground.png" width={680} />
                 </div>
             </div>
         ),

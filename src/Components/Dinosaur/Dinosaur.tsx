@@ -47,7 +47,7 @@ export const Dinosaur: React.FC<DinosaurProps> = (props: DinosaurProps) => {
     return useMemo(
         () => (
             <div ref={dinoRef} className="absolute left-4 z-10 transform h-12 w-12" style={{ bottom: jumpTime < 0 ? 12 : heightFunction(jumpTime), transition: '25ms bottom linear' }}>
-                <img src={`/dinosaur${imageExtension}.png`} className="fill" />
+                <img src={`./dinosaur${imageExtension}.png`} className="fill" />
             </div>
         ),
         [sprite, jumpTime, gameState],
