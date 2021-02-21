@@ -69,16 +69,9 @@ export const Stage: React.FC = () => {
         }
     }, [obstacles, gameState])
 
-    let messageText = ''
-    if (gameState === GameState.NotStarted) messageText = 'Hit space or ↑ to start'
-    else if (gameState === GameState.Dead) messageText = 'Game Over'
-
     return (
         <div className="relative flex h-60 mx-auto my-4 overflow-hidden" style={{ width: STAGE_WIDTH }}>
-            <Message gameState={gameState} messageText={messageText} />
-            <div className="absolute cursor-pointer text-blue-500 hover:text-red-500 h-10 border border-black" onClick={() => setGameState(GameState.Dead)}>
-                Dead
-            </div>
+            <Message gameState={gameState} />
             <Score score={score} highScore={highScore} />
             {obstacles}
             <Dinosaur dinoRef={dinoRef} gameState={gameState} />
