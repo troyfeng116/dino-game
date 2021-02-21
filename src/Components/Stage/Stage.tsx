@@ -26,10 +26,6 @@ export const Stage: React.FC = () => {
     const obstacleRects = usePositionArr(obstacleRefArr)
 
     useEffect(() => {
-        console.log(gameLevel)
-    }, [gameLevel])
-
-    useEffect(() => {
         if (gameState === GameState.InProgress) {
             if (isIntersectingWithArr(dinoRect, obstacleRects)) {
                 setGameState(GameState.Dead)
